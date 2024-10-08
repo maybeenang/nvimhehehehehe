@@ -41,3 +41,7 @@ opt.backspace = 'indent,eol,start' -- Allow backspacing over everything in inser
 opt.iskeyword:append('-') -- Treat dash separated words as a word text object
 opt.modifiable = true -- Allow buffer modification
 
+-- Cursor
+
+
+

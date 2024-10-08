@@ -2,14 +2,15 @@ local builtin = require("telescope.builtin")
 local actions = require("telescope.actions")
 
 return {
-    	'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope.nvim',
 	dependencies = { 
 		'nvim-lua/plenary.nvim' 
 	},
 	keys = function()
 		local builtin = require("telescope.builtin")
 		return {
-			{"<C-p>", builtin.find_files, desc = "Find File"}
+			{"<C-p>", builtin.find_files, desc = "Find File"},
+			{"<C-f>", builtin.live_grep, desc = "Find File"}
 		}
 	end,
   opts = {

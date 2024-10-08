@@ -25,6 +25,7 @@ return {
         hide_during_completion = true,
         debounce = 75,
         keymap = {
+          -- Accept the current suggestion with tab but don't override the default completion
           accept = "<TAB>",
           accept_word = false,
           -- Accept the current with right arrow

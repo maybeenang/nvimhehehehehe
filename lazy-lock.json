@@ -1,6 +1,7 @@
 {
   "copilot.lua": { "branch": "master", "commit": "1a237cf50372830a61d92b0adf00d3b23882e0e1" },
   "gitsigns.nvim": { "branch": "main", "commit": "863903631e676b33e8be2acb17512fdc1b80b4fb" },
+  "indentmini.nvim": { "branch": "main", "commit": "8922b7ec3f1d556b0805d025f0122e50da387303" },
   "lazy.nvim": { "branch": "main", "commit": "1159bdccd8910a0fd0914b24d6c3d186689023d9" },
   "neo-tree.nvim": { "branch": "main", "commit": "a77af2e764c5ed4038d27d1c463fa49cd4794e07" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },
