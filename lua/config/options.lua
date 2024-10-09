@@ -22,7 +22,8 @@ opt.cursorline = true
 opt.signcolumn = 'yes'
 opt.cmdheight = 1
 opt.completeopt = 'menuone,noselect,noinsert'
-opt.scrolloff = 8
+opt.scrolloff = 10
+opt.showmode = false
 
 -- Behavior
 opt.hidden = true -- Enable background buffers
@@ -41,7 +42,6 @@ opt.backspace = 'indent,eol,start' -- Allow backspacing over everything in inser
 opt.iskeyword:append('-') -- Treat dash separated words as a word text object
 opt.modifiable = true -- Allow buffer modification
 
--- Cursor
 
 
 
