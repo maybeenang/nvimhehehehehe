@@ -15,10 +15,10 @@ set({ 'n', 'i', 'v' }, '<C-l>', '<C-w>l', { noremap = true })
 
 -- Split windows
 set({ 'n' }, '<leader>h', ':split<CR>', { noremap = true, desc = "New Window Horizontal" })
-set({ 'n' }, '<leader>v', ':vsplit<CR>', { noremap = true, desc = "New Window Veritcal"  })
+set({ 'n' }, '<leader>v', ':vsplit<CR>', { noremap = true, desc = "New Window Veritcal" })
 
 -- Close windows
-set({ 'n' }, '<leader>c', ':close<CR>', { noremap = true, desc = "Close Current Window" })
+-- set({ 'n' }, '<leader>wc', ':close<CR>', { noremap = true, desc = "Close Current Window" })
 
 -- Indenting
 set({ 'v' }, '<', '<gv')
@@ -33,6 +33,10 @@ set({ 'v' }, '<A-j>', ':m \'>+1<CR>gv=gv', { noremap = true })
 set({ 'v' }, '<A-k>', ':m \'<-2<CR>gv=gv', { noremap = true })
 
 -- commenting
-vim.api.nvim_set_keymap('n', '<c-_>', 'gcc', { noremap = false})
-vim.api.nvim_set_keymap('v', '<c-_>', 'gcgv', { noremap = false})
+vim.api.nvim_set_keymap('n', '<c-_>', 'gcc', { noremap = false })
+vim.api.nvim_set_keymap('v', '<c-_>', 'gcgv', { noremap = false })
 
+
+vim.keymap.set('n', '<leader>gD', vim.diagnostic.open_float, { desc = "lsp: diagnostics" })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "lsp: next diagnostics" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "lsp: previous diagnostics" })

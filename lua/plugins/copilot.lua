@@ -54,7 +54,9 @@ return {
     end
   },
   {
-    "AndreM222/copilot-lualine"
+    "AndreM222/copilot-lualine",
+    lazy = false,
+    event = "VimEnter",
   }
 
 }
