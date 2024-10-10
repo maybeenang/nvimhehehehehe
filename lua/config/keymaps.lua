@@ -34,7 +34,10 @@ set({ 'v' }, '<A-k>', ':m \'<-2<CR>gv=gv', { noremap = true })
 
 -- commenting
 vim.api.nvim_set_keymap('n', '<c-_>', 'gcc', { noremap = false })
-vim.api.nvim_set_keymap('v', '<c-_>', 'gcgv', { noremap = false })
+vim.api.nvim_set_keymap('v', '<c-_>', 'gc', { noremap = false })
+
+-- nohl
+set({ 'n' }, '<esc>', ':nohl<CR>', { noremap = true, desc = "Clear Highlight" })
 
 
 vim.keymap.set('n', '<leader>gD', vim.diagnostic.open_float, { desc = "lsp: diagnostics" })

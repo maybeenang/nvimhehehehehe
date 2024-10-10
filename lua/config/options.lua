@@ -1,5 +1,6 @@
 local opt = vim.opt
 
+
 -- Tab / Indentation
 opt.tabstop = 2
 opt.shiftwidth = 2
@@ -41,7 +42,8 @@ opt.termguicolors = true -- True color support
 opt.backspace = 'indent,eol,start' -- Allow backspacing over everything in insert mode
 opt.iskeyword:append('-') -- Treat dash separated words as a word text object
 opt.modifiable = true -- Allow buffer modification
-
-
-
+opt.smoothscroll = true -- Smooth scrolling
+opt.pumblend = 10
+opt.winblend = 10
+opt.updatetime = 200
 
