@@ -22,7 +22,7 @@ opt.relativenumber = true
 opt.cursorline = true
 opt.signcolumn = 'yes'
 opt.cmdheight = 1
-opt.completeopt = 'menuone,noselect,noinsert'
+-- opt.completeopt = 'menuone,noselect,noinsert'
 opt.scrolloff = 10
 opt.showmode = false
 
