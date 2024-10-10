@@ -1,9 +1,13 @@
 return {
-  {  
+  {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects'
+    },
     lazy = false,
     build = ":TSUpdate",
     config = function()
+      -- WINDOWS 10
       require("nvim-treesitter.install").compilers = { "zig" }
       require("nvim-treesitter.configs").setup {
         highlight = {
@@ -21,7 +25,7 @@ return {
           "html",
           "css",
           "php",
-        },    
+        },
         sync_install = false,
         auto_install = true,
       }

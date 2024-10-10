@@ -25,6 +25,7 @@ opt.cmdheight = 1
 -- opt.completeopt = 'menuone,noselect,noinsert'
 opt.scrolloff = 10
 opt.showmode = false
+opt.pumheight = 10
 
 -- Behavior
 opt.hidden = true -- Enable background buffers

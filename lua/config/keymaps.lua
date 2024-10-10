@@ -39,6 +39,8 @@ vim.api.nvim_set_keymap('v', '<c-_>', 'gc', { noremap = false })
 -- nohl
 set({ 'n' }, '<esc>', ':nohl<CR>', { noremap = true, desc = "Clear Highlight" })
 
+set({ 'n', 'x' }, 's', '<Nop>')
+
 
 vim.keymap.set('n', '<leader>gD', vim.diagnostic.open_float, { desc = "lsp: diagnostics" })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "lsp: next diagnostics" })
