@@ -23,7 +23,6 @@ local lsp_attach = function(client, bufnr)
     local enabled = vim.lsp.inlay_hint.is_enabled({})
     vim.lsp.inlay_hint.enable(not enabled)
   end, "inlay hint")
-
 end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -43,6 +42,18 @@ lsp_zero.extend_lspconfig({
 local default_setup = function(server)
   require('lspconfig')[server].setup({})
 end
+
+-- mason setup
+require('mason').setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  }
+})
+
 require('mason-lspconfig').setup({
   ensure_installed = { "html", "lua_ls", "ts_ls" },
   automatic_installation = true,

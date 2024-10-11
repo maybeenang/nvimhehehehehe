@@ -43,10 +43,4 @@ return {
       markdown = true,
     },
   },
-  {
-    "achasnovski/mini.surround",
-    event = "VeryLazy",
-    lazy = false,
-
-  }
 }

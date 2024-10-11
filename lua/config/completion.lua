@@ -1,6 +1,6 @@
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
-local cmp_format = require('lsp-zero').cmp_format({details = true})
+local cmp_format = require('lsp-zero').cmp_format({ details = true })
 
 require('luasnip.loaders.from_vscode').lazy_load()
 local cmp_kinds = {
@@ -35,7 +35,7 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp", group_index = 2 },
     { name = "luasnip",  group_index = 2 },
-    { name = "buffer",  group_index = 2 },
+    { name = "buffer",   group_index = 2 },
     { name = "path",     group_index = 2 },
   },
 
@@ -46,7 +46,6 @@ cmp.setup({
   -- formatting = cmp_format,
 
   formatting = {
-
     fields = { 'kind', 'abbr' },
     format = require('lspkind').cmp_format({
       mode = 'symbol',
@@ -79,3 +78,12 @@ cmp.setup({
   },
 })
 
+require("lsp_signature").setup(
+  {
+    bind = true,
+    max_width = 50,
+    handler_opts = {
+      border = "single",
+    },
+  }
+)

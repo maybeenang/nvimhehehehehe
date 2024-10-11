@@ -1,11 +1,12 @@
 return {
   -- COREE
   {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-  },
-  {
     'VonHeikemen/lsp-zero.nvim',
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
     branch = 'v4.x',
     lazy = false,
     config = function()
@@ -23,48 +24,10 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       "onsails/lspkind.nvim",
+      "ray-x/lsp_signature.nvim",
     },
     config = function()
       require("config.completion")
     end
-  },
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("lsp_signature").setup(
-        {
-          bind = true,
-          max_width = 50,
-          handler_opts = {
-            border = "single",
-          },
-        }
-      )
-    end
-  },
-  {
-    "j-hui/fidget.nvim",
-    opts = {},
-    lazy = false,
-  },
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
-    config = function()
-      require('mason').setup({
-        ui = {
-          icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗"
-          }
-        }
-      })
-    end
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
   },
 }
