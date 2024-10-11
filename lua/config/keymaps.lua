@@ -39,9 +39,16 @@ vim.api.nvim_set_keymap('v', '<c-_>', 'gc', { noremap = false })
 -- nohl
 set({ 'n' }, '<esc>', ':nohl<CR>', { noremap = true, desc = "Clear Highlight" })
 
-set({ 'n', 'x' }, 's', '<Nop>')
 
-
+-- diagnostic
 vim.keymap.set('n', '<leader>gD', vim.diagnostic.open_float, { desc = "lsp: diagnostics" })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "lsp: next diagnostics" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "lsp: previous diagnostics" })
+
+
+-- Leader keymaps
+set({ 'n' }, '<leader>q', ':q<CR>', { noremap = true, desc = "Quit" })
+set({ 'n' }, '<leader>Q', ':qa<CR>', { noremap = true, desc = "Quit All" })
+set({ 'n' }, '<leader>W', ':wa<CR>', { noremap = true, desc = "Write All" })
+set({ 'n' }, '<leader>w', ':w<CR>', { noremap = true, desc = "Write" })
+set({ 'n' }, '<leader>o', ':only<CR>', { noremap = true, desc = "Only" })

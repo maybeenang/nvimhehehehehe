@@ -1,5 +1,6 @@
 return {
   "hiphish/rainbow-delimiters.nvim",
+  event = "BufRead",
   config = function()
     local rainbow_delimiters = require 'rainbow-delimiters'
     require('rainbow-delimiters.setup').setup {
@@ -9,20 +10,16 @@ return {
       },
       query = {
         [''] = 'rainbow-delimiters',
-        lua = 'rainbow-blocks',
+        -- lua = 'rainbow-blocks',
       },
       priority = {
         [''] = 110,
-        lua = 210,
+        -- lua = 210,
       },
       highlight = {
-        'RainbowDelimiterRed',
         'RainbowDelimiterYellow',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
-        'RainbowDelimiterGreen',
         'RainbowDelimiterViolet',
-        'RainbowDelimiterCyan',
+        'RainbowDelimiterBlue',
       },
     }
   end
