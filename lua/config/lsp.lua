@@ -35,6 +35,8 @@ lsp_zero.extend_lspconfig({
     info = '»',
   },
 
+
+
   lsp_attach = lsp_attach,
   capabilities = lsp_capabilities,
 })
@@ -42,6 +44,8 @@ lsp_zero.extend_lspconfig({
 local default_setup = function(server)
   require('lspconfig')[server].setup({})
 end
+
+  
 
 -- mason setup
 require('mason').setup({
