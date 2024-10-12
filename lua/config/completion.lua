@@ -61,6 +61,8 @@ cmp.setup({
     -- INI ANEH GA JELAS
     -- ['<TAB>'] = cmp_action.luasnip_supertab(),
     -- ['<S-TAB>'] = cmp_action.luasnip_supertab(),
+    --
+    -- ['<ESC>'] = cmp.mapping.close(),
     ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
   }),

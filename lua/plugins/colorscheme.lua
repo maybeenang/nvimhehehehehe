@@ -2,6 +2,7 @@ return {
   {
     "zaldih/themery.nvim",
     lazy = false,
+    cmd = "Theme",
     config = function()
       require("themery").setup({
         themes = {
