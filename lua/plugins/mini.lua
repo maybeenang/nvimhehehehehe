@@ -66,6 +66,34 @@ return {
         })
       end
 
+
+
+
+      local default_header = function()
+        local hour = tonumber(vim.fn.strftime('%H'))
+        -- [04:00, 12:00) - morning, [12:00, 20:00) - day, [20:00, 04:00) - evening
+        local part_id = math.floor((hour + 4) / 8) + 1
+        local day_part = ({ 'evening', 'morning', 'afternoon', 'evening' })[part_id]
+        local username = 'maybeenang' or vim.loop.os_get_passwd()['username']
+
+        local randomqt = require("extras.random-extras.lua.randomquote").get_random_quotes()
+
+        local quote = randomqt.quote
+        -- local author = randomqt.author
+
+        -- local quote_str = quote and table.concat(quote, "\n") or ""
+
+        local formatted_quote = table.concat(quote, "\n")
+
+        local header = table.concat({
+          ('Good %s, %s'):format(day_part, username),
+          "\n",
+          formatted_quote,
+        }, "\n")
+
+        return header
+      end
+
       -- get current leader key
       local leader = vim.g.mapleader or "\\"
 
@@ -79,9 +107,10 @@ return {
       local starter = require("mini.starter")
       starter.setup({
         evaluate_single = true,
+        header = default_header,
         items = {
           -- starter.sections.recent_files(10, false),
-          starter.sections.recent_files(10,true, false),
+          starter.sections.recent_files(10, true, true),
           -- starter.sections.telescope(),
           -- Use this if you set up 'mini.sessions'
           starter.sections.sessions(5, true),
@@ -108,9 +137,9 @@ return {
         pattern = "MiniStarterOpened",
         group = augroup,
         callback = function()
-          vim.keymap.set("n", "j", function () MiniStarter.update_current_item('next') end, opts)
-          vim.keymap.set("n", "k", function () MiniStarter.update_current_item('prev') end, opts)
-          vim.keymap.set("n", "<C-p>", function () require("telescope.builtin").find_files() end, opts)
+          vim.keymap.set("n", "j", function() MiniStarter.update_current_item('next') end, opts)
+          vim.keymap.set("n", "k", function() MiniStarter.update_current_item('prev') end, opts)
+          vim.keymap.set("n", "<C-p>", function() require("telescope.builtin").find_files() end, opts)
         end,
       })
 

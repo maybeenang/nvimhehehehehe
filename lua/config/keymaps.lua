@@ -35,7 +35,8 @@ set({ 'v' }, '<A-k>', ':m \'<-2<CR>gv=gv', { noremap = true })
 -- commenting
 vim.api.nvim_set_keymap('n', '<c-_>', 'gcc', { noremap = false })
 vim.api.nvim_set_keymap('v', '<c-_>', 'gc', { noremap = false })
-
+-- add comment while instert mode
+vim.api.nvim_set_keymap('i', '<c-_>', '<esc>gcci', { noremap = false })
 -- nohl
 set({ 'n' }, '<esc>', ':nohl<CR>', { noremap = true, desc = "Clear Highlight" })
 
