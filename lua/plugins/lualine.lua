@@ -22,6 +22,7 @@ return {
           winbar = 1000,
         },
       },
+
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diagnostics' },

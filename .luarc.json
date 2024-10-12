@@ -9,5 +9,9 @@
   "workspace.library": [
     "$VIMRUNTIME",
     "${3rd}/luv/library"
-  ]
+  ],
+    "diagnostics.disable": [
+        "deprecated",
+        "undefined-doc-name"
+    ]
 }

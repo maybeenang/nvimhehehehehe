@@ -10,11 +10,16 @@ return {
     },
     keys = function()
       local builtin = require("telescope.builtin")
-      -- local frecency = require("telescope").extensions.frecency.frecency
+      local frecency = function()
+        require("telescope").extensions.frecency.frecency {
+          workspace = "CWD",
+          theme = "dropdown",
+        }
+      end
       return {
-        { "<C-p>", builtin.find_files, desc = "Find File" },
-        { "<leader>p", ":Telescope frecency workspace=CWD theme=dropdown previewer=false<CR>", desc = "Find File" },
-        { "<C-f>", builtin.live_grep,  desc = "Find File" }
+        { "<C-p>",     builtin.find_files, desc = "Find File" },
+        { "<leader>p", frecency,           desc = "Find File recent" },
+        { "<C-f>",     builtin.live_grep,  desc = "Find File" }
       }
     end,
     config = function()
@@ -33,6 +38,7 @@ return {
           find_files = {
             theme = "dropdown",
             previewer = false,
+            find_command = { "rg", "--files", "--sortr=modified" },
           },
         },
         extensions = {
@@ -43,6 +49,8 @@ return {
             show_scores = true,
             show_unindexed = true,
             show_filter_columns = false,
+            theme = "dropdown",
+            previewer = false,
             ignore_patterns = { "*.git/*", "*/tmp/*" },
           }
         },
