@@ -15,11 +15,14 @@ return {
     config = function()
       require("ibl").setup({
         indent = {
-          char = "▏",
+          char = "│",
           priority = 2,
         },
         scope = {
           highlight = highlight,
+          show_start = false,
+          show_end = false,
+          show_exact_scope = true
         }
       })
     end
