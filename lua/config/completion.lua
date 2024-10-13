@@ -5,42 +5,13 @@ local cmp_format = require('lsp-zero').cmp_format({ details = true })
 require("luasnip").filetype_extend("javasriptreact", { "html" })
 require('luasnip.loaders.from_vscode').lazy_load()
 
-local cmp_kinds = {
-  Text = '  ',
-  Method = '  ',
-  Function = '  ',
-  Constructor = '  ',
-  Field = '  ',
-  Variable = '  ',
-  Class = '  ',
-  Interface = '  ',
-  Module = '  ',
-  Property = '  ',
-  Unit = '  ',
-  Value = '  ',
-  Enum = '  ',
-  Keyword = '  ',
-  Snippet = '  ',
-  Color = '  ',
-  File = '  ',
-  Reference = '  ',
-  Folder = '  ',
-  EnumMember = '  ',
-  Constant = '  ',
-  Struct = '  ',
-  Event = '  ',
-  Operator = '  ',
-  TypeParameter = '  ',
-}
-
 cmp.setup({
   sources = {
-    { name = "nvim_lsp", group_index = 2 },
-    { name = "luasnip",  group_index = 2 },
-    { name = "buffer",   group_index = 2 },
-    { name = "path",     group_index = 2 },
+    { name = "nvim_lsp", },
+    { name = "luasnip", },
+    { name = "buffer", },
+    { name = "path", },
   },
-
   preselect = 'item',
   completion = {
     completeopt = 'menu,menuone,noinsert'
@@ -48,14 +19,32 @@ cmp.setup({
   -- formatting = cmp_format,
 
   formatting = {
-    fields = { 'kind', 'abbr', "menu" },
+
+		fields = {
+			cmp.ItemField.Kind,
+			cmp.ItemField.Abbr,
+			cmp.ItemField.Menu,
+		},
 
     format = require('lspkind').cmp_format({
       mode = 'symbol',
+      preset = 'codicons',
       maxwidth = 50,
       ellipsis_char = '...',
-      show_labelDeatils = true,
-      symbol_map = cmp_kinds,
+      menu = {
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+      },
+      -- show_labelDeatils = true,
+      -- symbol_map = cmp_kinds,
+      -- menu_map = {
+      --   nvim_lsp = "[LSP]",
+      --   luasnip = "[LuaSnip]",
+      --   buffer = "[Buffer]",
+      --   path = "[Path]",
+      -- }
     })
   },
   mapping = cmp.mapping.preset.insert({
@@ -74,17 +63,17 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end,
   },
-
   window = {
     width = 60,
     height = 15,
     -- completion = cmp.config.window.bordered(),
     documentation = {
-      max_height = 30,
+      max_height = 15,
       max_width = 60,
     },
   },
 })
+
 
 cmp.setup.cmdline('/', {
   view = {
