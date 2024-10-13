@@ -4,7 +4,6 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       "m-demare/hlargs.nvim",
-      "windwp/nvim-ts-autotag",
     },
     lazy = false,
     build = ":TSUpdate",

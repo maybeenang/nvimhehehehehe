@@ -2,7 +2,9 @@ local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 local cmp_format = require('lsp-zero').cmp_format({ details = true })
 
+require("luasnip").filetype_extend("javasriptreact", { "html" })
 require('luasnip.loaders.from_vscode').lazy_load()
+
 local cmp_kinds = {
   Text = '  ',
   Method = '  ',

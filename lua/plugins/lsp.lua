@@ -30,4 +30,19 @@ return {
       require("config.completion")
     end
   },
+  {
+    "windwp/nvim-ts-autotag",
+    event = {"BufReadPre", "BufNewFile"},
+    lazy = false,
+    ft = {
+      "html",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end
+  }
 }
