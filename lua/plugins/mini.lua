@@ -66,9 +66,6 @@ return {
         })
       end
 
-
-
-
       local default_header = function()
         local hour = tonumber(vim.fn.strftime('%H'))
         -- [04:00, 12:00) - morning, [12:00, 20:00) - day, [20:00, 04:00) - evening
@@ -140,19 +137,10 @@ return {
           vim.keymap.set("n", "j", function() MiniStarter.update_current_item('next') end, opts)
           vim.keymap.set("n", "k", function() MiniStarter.update_current_item('prev') end, opts)
           vim.keymap.set("n", "<C-p>", function() require("telescope.builtin").find_files() end, opts)
+          vim.api.nvim_exec_autocmds("User", { pattern = "NeovimStarted" })
         end,
       })
 
-      -- vim.cmd([[
-      --   augroup MiniStarterJK
-      --     au!
-      --     au User MiniStarterOpened nmap <buffer> j <Cmd>lua MiniStarter.update_current_item('next')<CR>
-      --     au User MiniStarterOpened nmap <buffer> k <Cmd>lua MiniStarter.update_current_item('prev')<CR>
-      --     au User MiniStarterOpened nmap <buffer> <C-p>  <Cmd>lua Telescope.builtin.find_files()<CR>
-      --     " au User MiniStarterOpened nmap <buffer> <C-n> <Cmd>lua MiniStarter.update_current_item('next')<CR>
-      --     " au User MiniStarterOpened nmap <buffer> <C-p> <Cmd>lua MiniStarter.update_current_item('prev')<CR>
-      --   augroup END
-      -- ]])
     end
   },
 }

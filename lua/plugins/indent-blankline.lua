@@ -1,9 +1,3 @@
-local highlight = {
-  'RainbowDelimiterYellow',
-  'RainbowDelimiterViolet',
-  'RainbowDelimiterBlue',
-}
-
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -13,6 +7,11 @@ return {
     opts = {},
     event = "BufReadPre",
     config = function()
+      local highlight = {
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterBlue',
+      }
       require("ibl").setup({
         indent = {
           char = "│",
@@ -31,6 +30,11 @@ return {
     "hiphish/rainbow-delimiters.nvim",
     event = "BufRead",
     config = function()
+      local highlight = {
+        'RainbowDelimiterYellow',
+        'RainbowDelimiterViolet',
+        'RainbowDelimiterBlue',
+      }
       local rainbow_delimiters = require 'rainbow-delimiters'
       require('rainbow-delimiters.setup').setup {
         strategy = {
