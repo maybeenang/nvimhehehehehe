@@ -48,7 +48,8 @@ cmp.setup({
   -- formatting = cmp_format,
 
   formatting = {
-    fields = { 'kind', 'abbr' },
+    fields = { 'kind', 'abbr', "menu" },
+
     format = require('lspkind').cmp_format({
       mode = 'symbol',
       maxwidth = 50,
@@ -78,9 +79,19 @@ cmp.setup({
     width = 60,
     height = 15,
     -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    documentation = {
+      max_height = 30,
+      max_width = 60,
+    },
   },
 })
+
+cmp.setup.cmdline('/', {
+  view = {
+    entries = { name = 'wildmenu', separator = '|' }
+  },
+})
+
 
 require("lsp_signature").setup(
   {

@@ -102,21 +102,27 @@ return {
       }, "\n")
 
       local starter = require("mini.starter")
+      local builtin = require("telescope.builtin")
+      local explorer = require("neo-tree.command")
+      local open_explorer = function()
+        explorer.execute { action = "focus", reveal = true, dir = vim.fn.getcwd() }
+      end
       starter.setup({
         evaluate_single = true,
         header = default_header,
         items = {
-          -- starter.sections.recent_files(10, false),
-          starter.sections.recent_files(10, true, true),
-          -- starter.sections.telescope(),
-          -- Use this if you set up 'mini.sessions'
-          starter.sections.sessions(5, true),
+          { name = 'Open Last Session', action = require("persisted").load, section = 'Session' },
+
+          starter.sections.recent_files(5, true, true),
+
+          { name = 'Open Explorer', action = open_explorer,      section = 'Builtin actions' },
+          { name = 'Find Files',    action = builtin.find_files, section = 'Builtin actions' },
           starter.sections.builtin_actions(),
         },
         footer = footer,
         content_hooks = {
           starter.gen_hook.adding_bullet(),
-          starter.gen_hook.indexing('all', { 'Builtin actions' }),
+          starter.gen_hook.indexing('all', { 'Builtin actions', 'Session' }),
           starter.gen_hook.padding(3, 2),
           starter.gen_hook.aligning('center', 'center'),
         },
@@ -141,6 +147,26 @@ return {
         end,
       })
 
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "NeovimStarted",
+        callback = function(ev)
+          local stats = require("lazy").stats()
+          local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+          local pad_footer = string.rep(" ", 8)
+
+          local footer_append = pad_footer .. "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+          starter.config.footer = table.concat({
+            starter.config.footer,
+            "\n",
+            footer_append,
+          }, "\n")
+
+
+          if vim.bo[ev.buf].filetype == "ministarter" then
+            pcall(starter.refresh)
+          end
+        end,
+      })
     end
   },
 }

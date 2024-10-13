@@ -84,25 +84,3 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "NeovimStarted",
-  callback = function(ev)
-    local starter = require("mini.starter")
-    local stats = require("lazy").stats()
-    local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-    local pad_footer = string.rep(" ", 8)
-
-    local footer = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
-    
-    starter.config.footer = table.concat({
-      starter.config.footer,
-      "\n",
-      footer,
-    }, "\n") 
-
-
-    if vim.bo[ev.buf].filetype == "ministarter" then
-      pcall(starter.refresh)
-    end
-  end,
-})
