@@ -76,7 +76,7 @@ return {
         local day_part = ({ 'evening', 'morning', 'afternoon', 'evening' })[part_id]
         local username = 'maybeenang' or vim.loop.os_get_passwd()['username']
 
-        local randomqt = require("extras.random-extras.lua.randomquote").get_random_quotes()
+        local randomqt = require("extras.randomqt").get_random_quotes()
 
         local quote = randomqt.quote
         -- local author = randomqt.author

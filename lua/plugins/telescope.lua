@@ -1,12 +1,8 @@
-local actions = require("telescope.actions")
-
 return {
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      "nvim-telescope/telescope-frecency.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
     },
     keys = function()
       local builtin = require("telescope.builtin")
@@ -24,6 +20,7 @@ return {
     end,
     config = function()
       local telescope = require("telescope")
+      local actions = require("telescope.actions")
       telescope.setup({
         defaults = {
           mappings = {
@@ -59,4 +56,12 @@ return {
       telescope.load_extension("frecency")
     end
   },
+  {
+
+    "nvim-telescope/telescope-frecency.nvim",
+  },
+  {
+
+    "nvim-telescope/telescope-ui-select.nvim",
+  }
 }
