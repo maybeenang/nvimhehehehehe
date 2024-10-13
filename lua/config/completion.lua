@@ -20,11 +20,11 @@ cmp.setup({
 
   formatting = {
 
-		fields = {
-			cmp.ItemField.Kind,
-			cmp.ItemField.Abbr,
-			cmp.ItemField.Menu,
-		},
+    fields = {
+      cmp.ItemField.Kind,
+      cmp.ItemField.Abbr,
+      cmp.ItemField.Menu,
+    },
 
     format = require('lspkind').cmp_format({
       mode = 'symbol',
@@ -43,10 +43,19 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-Space>'] = cmp.mapping.complete(),
     -- INI ANEH GA JELAS
-    ['<TAB>'] = cmp_action.luasnip_supertab(),
+    -- ['<TAB>'] = function()
+    --   if require('copilot.suggestion').is_visible() ~= true then
+    --     cmp_action.luasnip_supertab()
+    --   else
+    --     require('copilot.suggestion').accept()
+    --   end
+    -- end,
     ['<S-TAB>'] = cmp_action.luasnip_supertab(),
     --
     -- ['<ESC>'] = cmp.mapping.close(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
   }),

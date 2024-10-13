@@ -2,20 +2,22 @@ return {
   -- COREE
   {
     'VonHeikemen/lsp-zero.nvim',
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
     branch = 'v4.x',
-    lazy = false,
+    lazy = true,
     config = function()
       require('config.lsp')
     end
   },
   {
     "hrsh7th/nvim-cmp",
-    lazy = false,
+    lazy = true,
+    event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -33,7 +35,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     event = { "BufReadPre", "BufNewFile" },
-    lazy = false,
+    lazy = true,
     ft = {
       "html",
       "javascript",
@@ -50,6 +52,7 @@ return {
     "folke/trouble.nvim",
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
+    event = "LspAttach",
     keys = {
       {
         "<leader>xx",

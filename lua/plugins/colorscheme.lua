@@ -2,6 +2,7 @@ return {
   {
     "zaldih/themery.nvim",
     lazy = false,
+    event = "VimEnter",
     cmd = "Theme",
     config = function()
       require("themery").setup({
@@ -39,9 +40,4 @@ return {
     'loctvl842/monokai-pro.nvim',
     name = 'monokai-pro',
   },
-  {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-    priority = 1001,
-  }
 }

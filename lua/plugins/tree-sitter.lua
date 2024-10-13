@@ -5,7 +5,9 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects',
       "m-demare/hlargs.nvim",
     },
-    lazy = false,
+    -- lazy = false,
+    lazy = true,  -- Lazy-load
+    event = { "BufRead", "BufNewFile" },
     build = ":TSUpdate",
     config = function()
       -- WINDOWS 10

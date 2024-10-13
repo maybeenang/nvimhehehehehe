@@ -73,19 +73,9 @@ return {
         local day_part = ({ 'evening', 'morning', 'afternoon', 'evening' })[part_id]
         local username = 'maybeenang' or vim.loop.os_get_passwd()['username']
 
-        local randomqt = require("extras.randomqt").get_random_quotes()
-
-        local quote = randomqt.quote
-        -- local author = randomqt.author
-
-        -- local quote_str = quote and table.concat(quote, "\n") or ""
-
-        local formatted_quote = table.concat(quote, "\n")
 
         local header = table.concat({
           ('Good %s, %s'):format(day_part, username),
-          "\n",
-          formatted_quote,
         }, "\n")
 
         return header
@@ -115,8 +105,8 @@ return {
 
           starter.sections.recent_files(5, true, true),
 
-          { name = 'Open Explorer', action = open_explorer,      section = 'Builtin actions' },
-          { name = 'Find Files',    action = builtin.find_files, section = 'Builtin actions' },
+          { name = 'Open Explorer',     action = open_explorer,             section = 'Builtin actions' },
+          { name = 'Find Files',        action = builtin.find_files,        section = 'Builtin actions' },
           starter.sections.builtin_actions(),
         },
         footer = footer,
@@ -143,12 +133,12 @@ return {
           vim.keymap.set("n", "j", function() MiniStarter.update_current_item('next') end, opts)
           vim.keymap.set("n", "k", function() MiniStarter.update_current_item('prev') end, opts)
           vim.keymap.set("n", "<C-p>", function() require("telescope.builtin").find_files() end, opts)
-          vim.api.nvim_exec_autocmds("User", { pattern = "NeovimStarted" })
+          -- vim.api.nvim_exec_autocmds("User", { pattern = "NeovimStarted" })
         end,
       })
 
       vim.api.nvim_create_autocmd("User", {
-        pattern = "NeovimStarted",
+        pattern = "MiniStarterOpened",
         callback = function(ev)
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
@@ -161,6 +151,23 @@ return {
             footer_append,
           }, "\n")
 
+          print(starter.config.header)
+
+
+          -- local randomqt = require("extras.randomqt").get_random_quotes()
+          --
+          -- local quote = randomqt.quote
+          -- -- local author = randomqt.author
+          --
+          -- -- local quote_str = quote and table.concat(quote, "\n") or ""
+          --
+          -- local formatted_quote = table.concat(quote, "\n")
+          -- --
+          -- starter.config.header = table.concat({
+          --   starter.config.header,
+          --   "\n",
+          --   formatted_quote,
+          -- }, "\n")
 
           if vim.bo[ev.buf].filetype == "ministarter" then
             pcall(starter.refresh)
