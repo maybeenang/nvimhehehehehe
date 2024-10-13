@@ -1,6 +1,6 @@
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
-local cmp_format = require('lsp-zero').cmp_format({ details = true })
+-- local cmp_format = require('lsp-zero').cmp_format({ details = true })
 
 require("luasnip").filetype_extend("javasriptreact", { "html" })
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -37,22 +37,14 @@ cmp.setup({
         buffer = "[Buffer]",
         path = "[Path]",
       },
-      -- show_labelDeatils = true,
-      -- symbol_map = cmp_kinds,
-      -- menu_map = {
-      --   nvim_lsp = "[LSP]",
-      --   luasnip = "[LuaSnip]",
-      --   buffer = "[Buffer]",
-      --   path = "[Path]",
-      -- }
     })
   },
   mapping = cmp.mapping.preset.insert({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-Space>'] = cmp.mapping.complete(),
     -- INI ANEH GA JELAS
-    -- ['<TAB>'] = cmp_action.luasnip_supertab(),
-    -- ['<S-TAB>'] = cmp_action.luasnip_supertab(),
+    ['<TAB>'] = cmp_action.luasnip_supertab(),
+    ['<S-TAB>'] = cmp_action.luasnip_supertab(),
     --
     -- ['<ESC>'] = cmp.mapping.close(),
     ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -82,12 +74,12 @@ cmp.setup.cmdline('/', {
 })
 
 
-require("lsp_signature").setup(
-  {
-    bind = true,
-    max_width = 50,
-    handler_opts = {
-      border = "single",
-    },
-  }
-)
+-- require("lsp_signature").setup(
+--   {
+--     -- bind = true,
+--     max_width = 50,
+--     handler_opts = {
+--       border = "single",
+--     },
+--   }
+-- )

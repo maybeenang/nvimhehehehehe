@@ -37,12 +37,12 @@
   "nvim-web-devicons": { "branch": "master", "commit": "19d257cf889f79f4022163c3fbb5e08639077bd8" },
   "persisted.nvim": { "branch": "main", "commit": "3006e641e2892b58fe51511c31595515e1a7dc00" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
-  "rainbow-delimiters.nvim": { "branch": "master", "commit": "d227e6c9879bb50af35cd733461198666981d482" },
   "telescope-frecency.nvim": { "branch": "master", "commit": "f67baca08423a6fd00167801a54db38e0b878063" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "df534c3042572fb958586facd02841e10186707c" },
   "themery.nvim": { "branch": "main", "commit": "15c29229e9a25655587462c8c64a62d9aadf0a92" },
   "transparent.nvim": { "branch": "main", "commit": "8a2749a2fa74f97fe6557f61b89ac7fd873f3c21" },
+  "trouble.nvim": { "branch": "main", "commit": "254145ffd528b98eb20be894338e2d5c93fa02c2" },
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
   "which-key.nvim": { "branch": "main", "commit": "8badb359f7ab8711e2575ef75dfe6fbbd87e4821" }
 }

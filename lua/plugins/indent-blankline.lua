@@ -26,39 +26,4 @@ return {
       })
     end
   },
-  {
-    "hiphish/rainbow-delimiters.nvim",
-    event = "BufRead",
-    config = function()
-      local highlight = {
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterViolet',
-        'RainbowDelimiterBlue',
-      }
-      local rainbow_delimiters = require 'rainbow-delimiters'
-      require('rainbow-delimiters.setup').setup {
-        strategy = {
-          [''] = rainbow_delimiters.strategy['global'],
-          vim = rainbow_delimiters.strategy['local'],
-          -- javascript = rainbow_delimiters.strategy['local'],
-          -- tsx = rainbow_delimiters.strategy['local'],
-          -- typescript = rainbow_delimiters.strategy['local'],
-        },
-        query = {
-          [''] = 'rainbow-delimiters',
-          lua = 'rainbow-blocks',
-          -- javascript = 'rainbow-parens',
-          tsx = 'rainbow-parens',
-          -- typescript = "rainbow-parens"
-        },
-        priority = {
-          [''] = 110,
-          tsx = 210,
-          -- javascript = 310,
-          -- typescript = 410,
-        },
-        highlight = highlight
-      }
-    end
-  }
 }

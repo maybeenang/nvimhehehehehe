@@ -6,6 +6,10 @@ local lsp_attach = function(client, bufnr)
     vim.keymap.set('n', key, result, { buffer = bufnr, desc = "lsp: " .. desc })
   end
 
+  local iset = function(key, result, desc)
+    vim.keymap.set('i', key, result, { buffer = bufnr, desc = "lsp: " .. desc })
+  end
+
   nset("K", vim.lsp.buf.hover, "hover")
   nset("<leader>gd", builtin_tele.lsp_definitions, "Goto definition")
   nset("gi", builtin_tele.lsp_implementations, "Goto implementation")
@@ -14,8 +18,9 @@ local lsp_attach = function(client, bufnr)
   -- nset("gd", vim.lsp.buf.definition, "Goto definition")
   nset("gD", vim.lsp.buf.declaration, "Goto declaration")
   nset('gs', vim.lsp.buf.signature_help, "Signature help")
+  iset('<C-h>', vim.lsp.buf.signature_help, "Signature help")
   nset('<F2>', vim.lsp.buf.rename, "Rename")
-  vim.keymap.set({ 'n', 'x' }, '<F3>', vim.lsp.buf.format,
+  vim.keymap.set({ 'n', 'x', 'v', 'i' }, '<F3>', vim.lsp.buf.format,
     { buffer = bufnr, desc = "Format" })
   nset("<leader>gr", require("telescope.builtin").lsp_references, "Open references")
   nset("<leader>ca", vim.lsp.buf.code_action, "Code action")
@@ -26,6 +31,7 @@ local lsp_attach = function(client, bufnr)
 end
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 
 lsp_zero.extend_lspconfig({
   sign_text = {
