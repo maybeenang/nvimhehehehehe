@@ -7,6 +7,7 @@ return {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim"
     },
     branch = 'v4.x',
     lazy = true,

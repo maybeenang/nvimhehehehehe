@@ -15,11 +15,11 @@ local lsp_attach = function(client, bufnr)
   nset("<leader>gi", builtin_tele.lsp_implementations, "Goto implementation")
   nset('<leader>gr', builtin_tele.lsp_references, "Goto references")
   nset('<leader>go', builtin_tele.lsp_type_definitions, "Goto type definition")
-  -- nset("gd", vim.lsp.buf.definition, "Goto definition")
+  nset("gd", vim.lsp.buf.definition, "Goto definition")
   nset("<leader>gD", vim.lsp.buf.declaration, "Goto declaration")
   nset('<leader>gs', vim.lsp.buf.signature_help, "Signature help")
   iset('<C-h>', vim.lsp.buf.signature_help, "Signature help")
-  nset('<F2>', vim.lsp.buf.rename, "Rename")
+  -- nset('<F2>', vim.lsp.buf.rename, "Rename") -- replaced by conform
   vim.keymap.set({ 'n', 'x', 'v', 'i' }, '<F3>', vim.lsp.buf.format,
     { buffer = bufnr, desc = "Format" })
   nset("<leader>gr", require("telescope.builtin").lsp_references, "Open references")
@@ -77,4 +77,12 @@ require('mason-lspconfig').setup({
       })
     end,
   },
+})
+
+require("mason-tool-installer").setup({
+  ensure_installed = {
+    "prettier",
+    "eslint_d",
+    "stylua"
+  }
 })

@@ -27,22 +27,6 @@ return {
       }
     end
   },
-  -- {
-  --   "echasnovski/mini.pairs",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     modes = { insert = true, command = true, terminal = false },
-  --     -- skip autopair when next character is one of these
-  --     skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-  --     -- skip autopair when the cursor is inside these treesitter nodes
-  --     skip_ts = { "string" },
-  --     -- skip autopair when next character is closing pair
-  --     -- and there are more closing pairs than opening pairs
-  --     skip_unbalanced = true,
-  --     -- better deal with markdown code blocks
-  --     markdown = true,
-  --   },
-  -- },
   {
     "echasnovski/mini.surround",
     event = "BufRead",
@@ -129,51 +113,26 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "MiniStarterOpened",
         group = augroup,
-        callback = function()
+        callback = function(ev)
           vim.keymap.set("n", "j", function() MiniStarter.update_current_item('next') end, opts)
           vim.keymap.set("n", "k", function() MiniStarter.update_current_item('prev') end, opts)
           vim.keymap.set("n", "<C-p>", function() require("telescope.builtin").find_files() end, opts)
-          -- vim.api.nvim_exec_autocmds("User", { pattern = "NeovimStarted" })
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "MiniStarterOpened",
-        callback = function(ev)
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          local pad_footer = string.rep(" ", 8)
 
-          local footer_append = pad_footer .. "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+          local footer_append =  "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
           starter.config.footer = table.concat({
             starter.config.footer,
             "\n",
             footer_append,
           }, "\n")
 
-          print(starter.config.header)
-
-
-          -- local randomqt = require("extras.randomqt").get_random_quotes()
-          --
-          -- local quote = randomqt.quote
-          -- -- local author = randomqt.author
-          --
-          -- -- local quote_str = quote and table.concat(quote, "\n") or ""
-          --
-          -- local formatted_quote = table.concat(quote, "\n")
-          -- --
-          -- starter.config.header = table.concat({
-          --   starter.config.header,
-          --   "\n",
-          --   formatted_quote,
-          -- }, "\n")
-
           if vim.bo[ev.buf].filetype == "ministarter" then
             pcall(starter.refresh)
           end
         end,
       })
+
     end
   },
 }
