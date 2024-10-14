@@ -9,6 +9,7 @@ return {
         themes = {
           "catppuccin",
           -- "monokai-pro",
+          "onedark",
           {
             name = "Monokai Classic",
             colorscheme = "monokai-pro",
@@ -40,4 +41,7 @@ return {
     'loctvl842/monokai-pro.nvim',
     name = 'monokai-pro',
   },
+  {
+    "olimorris/onedarkpro.nvim",
+  }
 }

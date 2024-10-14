@@ -8,8 +8,8 @@ require('luasnip.loaders.from_vscode').lazy_load()
 cmp.setup({
   sources = {
     { name = "nvim_lsp", },
-    { name = "luasnip", },
-    { name = "buffer", },
+    { name = "luasnip",  max_item_count = 5 },
+    { name = "buffer",   max_item_count = 5 },
     { name = "path", },
   },
   preselect = 'item',
@@ -56,8 +56,8 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<C-j>"] = cmp.mapping.select_next_item({ select = false }),
+    ["<C-k>"] = cmp.mapping.select_prev_item({ select = false }),
   }),
   snippet = {
     expand = function(args)

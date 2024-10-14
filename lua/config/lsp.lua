@@ -12,12 +12,12 @@ local lsp_attach = function(client, bufnr)
 
   nset("K", vim.lsp.buf.hover, "hover")
   nset("<leader>gd", builtin_tele.lsp_definitions, "Goto definition")
-  nset("gi", builtin_tele.lsp_implementations, "Goto implementation")
+  nset("<leader>gi", builtin_tele.lsp_implementations, "Goto implementation")
   nset('<leader>gr', builtin_tele.lsp_references, "Goto references")
   nset('<leader>go', builtin_tele.lsp_type_definitions, "Goto type definition")
   -- nset("gd", vim.lsp.buf.definition, "Goto definition")
-  nset("gD", vim.lsp.buf.declaration, "Goto declaration")
-  nset('gs', vim.lsp.buf.signature_help, "Signature help")
+  nset("<leader>gD", vim.lsp.buf.declaration, "Goto declaration")
+  nset('<leader>gs', vim.lsp.buf.signature_help, "Signature help")
   iset('<C-h>', vim.lsp.buf.signature_help, "Signature help")
   nset('<F2>', vim.lsp.buf.rename, "Rename")
   vim.keymap.set({ 'n', 'x', 'v', 'i' }, '<F3>', vim.lsp.buf.format,
@@ -61,7 +61,7 @@ require('mason').setup({
 })
 
 require('mason-lspconfig').setup({
-  ensure_installed = { "html", "lua_ls", "ts_ls" },
+  ensure_installed = { "lua_ls", "ts_ls" },
   automatic_installation = true,
   handlers = {
     default_setup,

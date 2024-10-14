@@ -8,14 +8,14 @@ set({ 'n', 'i', 'v' }, '<C-k>', '<C-w>k', { noremap = true })
 set({ 'n', 'i', 'v' }, '<C-l>', '<C-w>l', { noremap = true })
 
 -- Resize windows
--- set({ 'n', 'i', 'v' }, '<S-Up>', ':resize +2<CR>', { noremap = true })
--- set({ 'n', 'i', 'v' }, '<S-Down>', ':resize -2<CR>', { noremap = true })
--- set({ 'n', 'i', 'v' }, '<S-Left>', ':vertical resize +2<CR>', { noremap = true })
--- set({ 'n', 'i', 'v' }, '<S-Right>', ':vertical resize -2<CR>', { noremap = true })
+set({ 'n', 'i', 'v' }, '<S-Up>', ':resize +2<CR>', { noremap = true })
+set({ 'n', 'i', 'v' }, '<S-Down>', ':resize -2<CR>', { noremap = true })
+set({ 'n', 'i', 'v' }, '<S-Left>', ':vertical resize +2<CR>', { noremap = true })
+set({ 'n', 'i', 'v' }, '<S-Right>', ':vertical resize -2<CR>', { noremap = true })
 
 -- Split windows
-set({ 'n' }, '<leader>h', ':split<CR>', { noremap = true, desc = "New Window Horizontal" })
-set({ 'n' }, '<leader>v', ':vsplit<CR>', { noremap = true, desc = "New Window Veritcal" })
+set({ 'n' }, '<leader>wh', ':split<CR>', { noremap = true, desc = "New Window Horizontal" })
+set({ 'n' }, '<leader>wv', ':vsplit<CR>', { noremap = true, desc = "New Window Veritcal" })
 
 -- Close windows
 -- set({ 'n' }, '<leader>wc', ':close<CR>', { noremap = true, desc = "Close Current Window" })
@@ -42,7 +42,7 @@ set({ 'n' }, '<esc>', ':nohl<CR>', { noremap = true, desc = "Clear Highlight" })
 
 
 -- diagnostic
-vim.keymap.set('n', '<leader>gD', vim.diagnostic.open_float, { desc = "lsp: diagnostics" })
+vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float, { desc = "lsp: diagnostics" })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "lsp: next diagnostics" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "lsp: previous diagnostics" })
 
@@ -53,3 +53,16 @@ set({ 'n' }, '<leader>Q', ':qa<CR>', { noremap = true, desc = "Quit All" })
 set({ 'n' }, '<leader>W', ':wa<CR>', { noremap = true, desc = "Write All" })
 set({ 'n' }, '<leader>w', ':w<CR>', { noremap = true, desc = "Write" })
 set({ 'n' }, '<leader>o', ':only<CR>', { noremap = true, desc = "Only" })
+
+-- Buffer
+-- Close buffer
+set({ 'n' }, '<leader>bd', ':bd<CR>', { noremap = true, desc = "Close Buffer" })
+-- Close All buffer
+set({ 'n' }, '<leader>bD', ":%bd|e#|bd#<cr>", { noremap = true, desc = "Close Buffer" })
+
+-- Buffer navigation
+-- Next buffer
+set({ 'n' }, '<leader>bn', ':bnext<CR>', { noremap = true, desc = "Next Buffer" })
+
+-- Previous buffer
+set({ 'n' }, '<leader>bp', ':bprevious<CR>', { noremap = true, desc = "Previous Buffer" })
