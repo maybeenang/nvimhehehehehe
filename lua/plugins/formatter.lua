@@ -19,6 +19,7 @@ return {
 				lua = { "stylua" },
 				-- php = { "pint" }
 				-- python = { "black" },
+				blade = { "blade-formatter" },
 			},
 			format_after_save = {
 				lsp_fallback = true,
