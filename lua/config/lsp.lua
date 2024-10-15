@@ -74,6 +74,26 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
+		emmet_language_server = function()
+			require("lspconfig").emmet_ls.setup({
+				cmd = { "emmet-language-server", "--stdio" },
+				filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact", "blade" },
+				init_options = {
+					config = {
+						emmet = {
+							triggerExpansionOnTab = true,
+							includeLanguages = {
+								css = "css",
+								javascript = "javascript",
+								html = "html",
+								typescript = "typescript",
+							},
+						},
+					},
+				},
+				root_dir = require("lspconfig/util").root_pattern("package.json", ".git"),
+			})
+		end,
 	},
 })
 
