@@ -30,12 +30,36 @@ return {
               ["<esc>"] = actions.close,
             },
           },
+          -- file_ignore_patterns = { ".git/*", "*/tmp/*", "node_modules/*", "venv", "vendor/*" },
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--ignore-file',
+            '.gitignore'
+          },
         },
         pickers = {
           find_files = {
             theme = "dropdown",
             previewer = false,
-            find_command = { "rg", "--files", "--sortr=modified" },
+            find_command = {
+              "rg",
+              "--files",
+              "--sortr=modified",
+              '--color=never',
+              '--no-heading',
+              '--with-filename',
+              '--line-number',
+              '--column',
+              '--smart-case',
+              '--ignore-file',
+              '.gitignore'
+            },
           },
         },
         extensions = {
@@ -48,7 +72,7 @@ return {
             show_filter_columns = false,
             theme = "dropdown",
             previewer = false,
-            ignore_patterns = { "*.git/*", "*/tmp/*" },
+            ignore_patterns = { "*.git/*", "*/tmp/*", "*/node_modules/*", "*/.venv/*", "*/vendor/" },
           },
           persisted = {
             layout_config = { width = 0.55, height = 0.55 }

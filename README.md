@@ -1,2 +1,3 @@
-# nvimhehehehehe
-my hehehe nvim config 
+                        # nvimhehehehehe
+
+            my hehehe nvim config
