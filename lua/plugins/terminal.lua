@@ -21,6 +21,7 @@ return {
 			end,
 		})
 
-		vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+		-- quit terminal and go to normal mode
+		vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n><c-w>k")
 	end,
 }
