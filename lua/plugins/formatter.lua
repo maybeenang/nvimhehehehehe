@@ -22,15 +22,17 @@ return {
 				blade = { "prettierd" },
 			},
 			format_on_save = {
+				bufnr = 0,
 				lsp_fallback = true,
 				async = true,
 				timeout_ms = 500,
+				quiet = true,
 			},
-			format_after_save = {
-				lsp_fallback = true,
-				async = true,
-				timeout_ms = 500,
-			},
+			-- format_after_save = {
+			-- 	lsp_fallback = true,
+			-- 	async = false,
+			-- 	timeout_ms = 500,
+			-- },
 		})
 
 		vim.keymap.set({ "n", "x", "v", "i" }, "<F3>", function()
@@ -39,6 +41,7 @@ return {
 				lsp_fallback = true,
 				async = true,
 				timeout_ms = 500,
+				quiet = true,
 			})
 		end, { desc = "Format" })
 
@@ -51,7 +54,7 @@ return {
 		-- 			["end"] = { args.line2, end_line:len() },
 		-- 		}
 		-- 	end
-		-- 	require("conform").format({ async = true, lsp_format = "fallback", range = range })
+		-- 	require("conform").format({ async = true, lsp_format = "fallback", range = range, quite = true })
 		-- end, { range = true })
 	end,
 }
