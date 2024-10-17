@@ -21,18 +21,19 @@ return {
 				-- python = { "black" },
 				blade = { "prettierd" },
 			},
-			format_on_save = {
-				bufnr = 0,
+			-- format_on_save = {
+			-- 	bufnr = 0,
+			-- 	lsp_fallback = true,
+			-- 	async = true,
+			-- 	timeout_ms = 500,
+			-- 	quiet = true,
+			-- },
+			format_after_save = {
 				lsp_fallback = true,
 				async = true,
 				timeout_ms = 500,
 				quiet = true,
 			},
-			-- format_after_save = {
-			-- 	lsp_fallback = true,
-			-- 	async = false,
-			-- 	timeout_ms = 500,
-			-- },
 		})
 
 		vim.keymap.set({ "n", "x", "v", "i" }, "<F3>", function()
@@ -45,16 +46,16 @@ return {
 			})
 		end, { desc = "Format" })
 
-		-- vim.api.nvim_create_user_command("Format", function(args)
-		-- 	local range = nil
-		-- 	if args.count ~= -1 then
-		-- 		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-		-- 		range = {
-		-- 			start = { args.line1, 0 },
-		-- 			["end"] = { args.line2, end_line:len() },
-		-- 		}
-		-- 	end
-		-- 	require("conform").format({ async = true, lsp_format = "fallback", range = range, quite = true })
-		-- end, { range = true })
+		vim.api.nvim_create_user_command("Format", function(args)
+			local range = nil
+			if args.count ~= -1 then
+				local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+				range = {
+					start = { args.line1, 0 },
+					["end"] = { args.line2, end_line:len() },
+				}
+			end
+			require("conform").format({ async = true, lsp_format = "fallback", range = range, quite = true })
+		end, { range = true })
 	end,
 }

@@ -1,4 +1,3 @@
-
 local function wrap_text(text, width)
 	local lines = {}
 	local line = ""
@@ -12,6 +11,11 @@ local function wrap_text(text, width)
 			else
 				line = word
 			end
+			vim.api.nvim_create_autocmd({ "QuitPre" }, {
+				callback = function()
+					vim.cmd("NvimTreeClose")
+				end,
+			})
 		end
 	end
 	table.insert(lines, line)
@@ -50,19 +54,17 @@ local function get_random_quotes()
 	local M = {}
 
 	-- Mendapatkan kutipan dan author secara acak
-	pick_random_quote(
-		function(quote, author)
-			M.quote = quote
-			M.author = author
-		end
-	)
+	pick_random_quote(function(quote, author)
+		M.quote = quote
+		M.author = author
+	end)
 
 	-- Bungkus teks menjadi maksimal 50 karakter per baris
 	M.quote = wrap_text(M.quote, 50)
 
 	-- Hitung panjang maksimal baris dari quote
 	local max_quote_length = get_max_line_length(M.quote)
-  M.author = "-- " .. M.author
+	M.author = "-- " .. M.author
 
 	-- Tambahkan padding dinamis agar author berada di kanan bawah
 	local padding = string.rep(" ", max_quote_length - #M.author)
