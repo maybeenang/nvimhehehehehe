@@ -2,5 +2,5 @@ require("config.globals")
 require("config.options")
 require("config.keymaps")
 require("config.autocommand")
+require("config.neovide")
 require("config.lazy")
-
