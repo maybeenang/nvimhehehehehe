@@ -68,7 +68,7 @@ require("lualine").setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch", "diagnostics" },
-		lualine_c = { "filename", "lsp_progress" },
+		lualine_c = { { "filename", path = 1 }, "lsp_progress" },
 		lualine_x = { "copilot", clients_lsp, formaters },
 		lualine_y = { "filetype", "progress" },
 		lualine_z = { "location" },
