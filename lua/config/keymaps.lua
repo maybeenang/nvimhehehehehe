@@ -42,6 +42,11 @@ else
 	vim.api.nvim_set_keymap("v", "<c-_>", "gc", { noremap = false })
 	-- add comment while instert mode
 	vim.api.nvim_set_keymap("i", "<c-_>", "<esc>gcci", { noremap = false })
+
+	vim.api.nvim_set_keymap("n", "<c-/>", "gcc", { noremap = false })
+	vim.api.nvim_set_keymap("v", "<c-/>", "gc", { noremap = false })
+	-- add comment while instert mode
+	vim.api.nvim_set_keymap("i", "<c-/>", "<esc>gcci", { noremap = false })
 end
 
 -- nohl

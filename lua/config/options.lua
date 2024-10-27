@@ -22,7 +22,7 @@ opt.cursorline = true
 opt.signcolumn = "yes"
 opt.cmdheight = 1
 -- opt.completeopt = 'menuone,noselect,noinsert'
-opt.scrolloff = 10
+opt.scrolloff = 8
 opt.showmode = false
 opt.pumheight = 10
 
@@ -42,7 +42,7 @@ opt.termguicolors = true -- True color support
 opt.backspace = "indent,eol,start" -- Allow backspacing over everything in insert mode
 opt.iskeyword:append("-") -- Treat dash separated words as a word text object
 opt.modifiable = true -- Allow buffer modification
--- opt.smoothscroll = true -- Smooth scrolling
+opt.smoothscroll = true -- Smooth scrolling
 opt.pumblend = 10
 opt.winblend = 10
 -- opt.updatetime = 200
