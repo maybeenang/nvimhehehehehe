@@ -59,7 +59,7 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "ts_ls" },
+	ensure_installed = { "lua_ls", "ts_ls", "html", "emmet_language_server", "ts_ls", "tailwindcss", "jsonls" },
 	automatic_installation = true,
 	handlers = {
 		default_setup,
@@ -100,6 +100,6 @@ require("mason-tool-installer").setup({
 		"prettier",
 		"eslint_d",
 		"stylua",
-		"pint",
+		-- "pint",
 	},
 })

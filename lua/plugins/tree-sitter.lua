@@ -10,8 +10,14 @@ return {
 		event = { "BufRead", "BufNewFile" },
 		build = ":TSUpdate",
 		config = function()
-			-- WINDOWS 10
-			require("nvim-treesitter.install").compilers = { "zig" }
+			-- check running os
+			local is_windows = vim.loop.os_uname().sysname == "Windows"
+
+			if is_windows then
+				require("nvim-treesitter.install").compilers = { "zig" }
+			else
+				require("nvim-treesitter.install").compilers = { "clang" }
+			end
 
 			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
