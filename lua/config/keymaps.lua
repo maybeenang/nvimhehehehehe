@@ -58,7 +58,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "lsp: next diagnost
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "lsp: previous diagnostics" })
 
 -- Leader keymaps
-set({ "n" }, "<leader>q", ":q<CR>", { noremap = true, desc = "Quit" })
+-- set({ "n" }, "<leader>q", ":q<CR>", { noremap = true, desc = "Quit" })
 set({ "n" }, "<leader>Q", ":qa<CR>", { noremap = true, desc = "Quit All" })
 set({ "n" }, "<leader>W", ":wa<CR>", { noremap = true, desc = "Write All" })
 set({ "n" }, "<leader>w", ":w<CR>", { noremap = true, desc = "Write" })
