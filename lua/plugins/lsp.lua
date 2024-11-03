@@ -16,11 +16,11 @@ return {
 		end,
 	},
 	{
-		-- "hrsh7th/nvim-cmp",
+		"hrsh7th/nvim-cmp",
 		-- "/nvim-cmp/tree/perf-up",
 
-		"yioneko/nvim-cmp",
-		branch = "perf-up",
+		-- "yioneko/nvim-cmp",
+		-- branch = "perf-up",
 		lazy = true,
 		event = "InsertEnter",
 		dependencies = {
