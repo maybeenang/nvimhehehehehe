@@ -31,7 +31,7 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
-			"ray-x/lsp_signature.nvim",
+			"roobert/tailwindcss-colorizer-cmp.nvim", -- bugg
 		},
 		config = function()
 			require("config.completion")

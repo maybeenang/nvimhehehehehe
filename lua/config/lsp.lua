@@ -102,6 +102,21 @@ require("mason-lspconfig").setup({
 				filetypes = { "html", "blade" },
 			})
 		end,
+
+		pyright = function()
+			require("lspconfig").pyright.setup({
+				settings = {
+					python = {
+						analysis = {
+							typeCheckingMode = "off",
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "workspace",
+						},
+					},
+				},
+			})
+		end,
 	},
 })
 

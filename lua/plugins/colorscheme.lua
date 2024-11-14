@@ -96,4 +96,22 @@ return {
 	{
 		"folke/tokyonight.nvim",
 	},
+	{
+		"xiyaowong/transparent.nvim",
+		lazy = false,
+		config = function()
+			require("transparent").setup({
+				enable = true,
+				extra_groups = {
+					"NvimTreeNormal",
+					"terminal",
+					"packer",
+					"lsp_finder",
+					"TelescopePrompt",
+					"TelescopeResults",
+					"TelescopePreview",
+				},
+			})
+		end,
+	},
 }

@@ -18,7 +18,7 @@ return {
 				markdown = { "prettierd" },
 				lua = { "stylua" },
 				-- php = { "pint" }
-				-- python = { "black" },
+				python = { "black", "isort" },
 				blade = { "prettierd" },
 			},
 			-- format_on_save = {
