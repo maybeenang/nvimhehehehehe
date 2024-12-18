@@ -1,0 +1,11 @@
+{
+  "public function": {
+    "prefix": "pubfun",
+    "body": [
+      "public function ${1:functionName}($${2:argument})",
+      "{",
+      "\t${3:// code...}",
+      "}"
+    ]
+  }
+}

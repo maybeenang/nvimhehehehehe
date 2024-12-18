@@ -4,10 +4,30 @@ local cmp_action = require("lsp-zero").cmp_action()
 
 require("luasnip").filetype_extend("javasriptreact", { "html" })
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
+
+-- local bootstrap = {
+-- 	name = "html-css",
+-- 	option = {
+-- 		enable_on = {
+-- 			"html",
+-- 			"blade",
+-- 			"php",
+-- 		}, -- set the file types you want the plugin to work on
+-- 		dir_to_exclude = { "node_modules" },
+-- 		file_extensions = { "css", "sass", "less" }, -- set the local filetypes from which you want to derive classes
+-- 		style_sheets = {
+-- 			-- example of remote styles, only css no js for now
+-- 			"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
+-- 			"https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css",
+-- 		},
+-- 	},
+-- }
 
 cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
+		-- bootstrap,
 		{ name = "luasnip", max_item_count = 5 },
 		{ name = "buffer", max_item_count = 5 },
 		{ name = "path" },
@@ -16,10 +36,8 @@ cmp.setup({
 	completion = {
 		completeopt = "menu,menuone,noinsert",
 	},
-	-- formatting = cmp_format,
 
 	formatting = {
-
 		fields = {
 			cmp.ItemField.Kind,
 			cmp.ItemField.Abbr,
@@ -37,9 +55,11 @@ cmp.setup({
 				buffer = "[Buffer]",
 				path = "[Path]",
 			},
-			-- bug maybe my term doesnt support
+			before = require("tailwind-tools.cmp").lspkind_format,
 			-- before = function(entry, vim_item)
-			-- 	vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+			-- 	if entry.source.name == "html-css" then
+			-- 		vim_item.menu = entry.completion_item.menu
+			-- 	end
 			-- 	return vim_item
 			-- end,
 		}),
@@ -80,19 +100,3 @@ cmp.setup({
 		},
 	},
 })
-
-cmp.setup.cmdline("/", {
-	view = {
-		entries = { name = "wildmenu", separator = "|" },
-	},
-})
-
--- require("lsp_signature").setup(
---   {
---     -- bind = true,
---     max_width = 50,
---     handler_opts = {
---       border = "single",
---     },
---   }
--- )

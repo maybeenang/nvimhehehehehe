@@ -6,7 +6,7 @@ return {
 		require("persisted").setup({
 			-- autoload = true,
 			should_save = function()
-				if vim.bo.filetype == "ministarter" or vim.bo.filetype == "NvimTree" then
+				if vim.bo.filetype == "NvimTree" then
 					return false
 				end
 				return true

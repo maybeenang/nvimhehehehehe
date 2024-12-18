@@ -72,7 +72,7 @@ return {
 						name = "Monokai Machine",
 						colorscheme = "monokai-pro",
 						before = [[
-              require("monokai-pro").setup({
+              jequire("monokai-pro").setup({
                 filter = "machine",
               })
             ]],

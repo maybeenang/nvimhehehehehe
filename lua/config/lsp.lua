@@ -102,7 +102,6 @@ require("mason-lspconfig").setup({
 				filetypes = { "html", "blade" },
 			})
 		end,
-
 		pyright = function()
 			require("lspconfig").pyright.setup({
 				settings = {
@@ -117,6 +116,13 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
+
+		-- load tailwind when tailwindcss is installed
+		-- tailwindcss = function()
+		-- 	require("lspconfig").tailwindcss.setup({
+		-- 		root_dir = require("lspconfig.util").root_pattern("tailwind.config.js"),
+		-- 	})
+		-- end,
 	},
 })
 
