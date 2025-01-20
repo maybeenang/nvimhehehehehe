@@ -32,6 +32,9 @@ set({ "i" }, "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true })
 set({ "v" }, "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true })
 set({ "v" }, "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true })
 
+set({ "n" }, "j", "gj", { noremap = true })
+set({ "n" }, "k", "gk", { noremap = true })
+
 if vim.g.neovide then
 	vim.api.nvim_set_keymap("n", "<c-/>", "gcc", { noremap = false })
 	vim.api.nvim_set_keymap("v", "<c-/>", "gc", { noremap = false })

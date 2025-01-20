@@ -1,4 +1,5 @@
 local lsp_zero = require("lsp-zero")
+local util = require("lspconfig.util")
 local builtin_tele = require("telescope.builtin")
 
 local lsp_attach = function(client, bufnr)
@@ -61,16 +62,6 @@ require("mason").setup({
 })
 
 require("mason-lspconfig").setup({
-	ensure_installed = {
-		"lua_ls",
-		"ts_ls",
-		"html",
-		"emmet_language_server",
-		"ts_ls",
-		"tailwindcss",
-		"jsonls",
-		"intelephense",
-	},
 	automatic_installation = true,
 	handlers = {
 		default_setup,
@@ -88,6 +79,7 @@ require("mason-lspconfig").setup({
 		emmet_language_server = function()
 			require("lspconfig").emmet_language_server.setup({
 				-- cmd = { "emmet-language-server", "--stdio" },
+				-- ILANGIN INI NANTI
 				filetypes = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "blade" },
 				init_options = {
 					---@type table<string, string>
@@ -117,21 +109,35 @@ require("mason-lspconfig").setup({
 			})
 		end,
 
-		-- load tailwind when tailwindcss is installed
-		-- tailwindcss = function()
-		-- 	require("lspconfig").tailwindcss.setup({
-		-- 		root_dir = require("lspconfig.util").root_pattern("tailwind.config.js"),
-		-- 	})
-		-- end,
+		ts_ls = function()
+			require("lspconfig").ts_ls.setup({
+				root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
+				single_file_support = false,
+			})
+		end,
+
+		denols = function()
+			require("lspconfig").denols.setup({
+				root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+			})
+		end,
+	},
+	ensure_installed = {
+		"lua_ls",
+		"ts_ls",
+		"html",
+		"emmet_language_server",
+		"ts_ls",
+		"tailwindcss",
+		"jsonls",
+		"intelephense",
 	},
 })
 
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		"prettierd",
-		"prettier",
 		"eslint_d",
 		"stylua",
-		-- "pint",
 	},
 })

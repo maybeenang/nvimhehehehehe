@@ -1,6 +1,14 @@
 return {
 	"luckasRanarison/tailwind-tools.nvim",
 	name = "tailwind-tools",
+	ft = {
+		"html",
+		"css",
+		"javascriptreact",
+		"typescriptreact",
+		"blade",
+	},
+	after = "nvim-cmp",
 	build = ":UpdateRemotePlugins",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",

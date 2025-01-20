@@ -14,12 +14,11 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("confi
 -- 			"blade",
 -- 			"php",
 -- 		}, -- set the file types you want the plugin to work on
--- 		dir_to_exclude = { "node_modules" },
+-- 		dir_to_exclude = { "node_modules", "vendor", ".git", "writable", "public" },
 -- 		file_extensions = { "css", "sass", "less" }, -- set the local filetypes from which you want to derive classes
 -- 		style_sheets = {
 -- 			-- example of remote styles, only css no js for now
 -- 			"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
--- 			"https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css",
 -- 		},
 -- 	},
 -- }
@@ -27,7 +26,6 @@ require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("confi
 cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
-		-- bootstrap,
 		{ name = "luasnip", max_item_count = 5 },
 		{ name = "buffer", max_item_count = 5 },
 		{ name = "path" },
