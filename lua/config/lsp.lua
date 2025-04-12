@@ -80,7 +80,7 @@ require("mason-lspconfig").setup({
 			require("lspconfig").emmet_language_server.setup({
 				-- cmd = { "emmet-language-server", "--stdio" },
 				-- ILANGIN INI NANTI
-				filetypes = { "html", "css", "javascript", "javascriptreact", "typescriptreact", "blade" },
+				filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade" },
 				init_options = {
 					---@type table<string, string>
 					includeLanguages = {
@@ -111,14 +111,8 @@ require("mason-lspconfig").setup({
 
 		ts_ls = function()
 			require("lspconfig").ts_ls.setup({
-				root_dir = util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
-				single_file_support = false,
-			})
-		end,
-
-		denols = function()
-			require("lspconfig").denols.setup({
-				root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+				root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+				single_file_support = true,
 			})
 		end,
 	},
