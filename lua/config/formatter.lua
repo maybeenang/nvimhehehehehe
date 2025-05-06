@@ -2,6 +2,7 @@ local conform = require("conform")
 local js_ft = function()
 	local eslint_files = {
 		".prettierrc",
+		".prettierrc.js",
 		"prettier.config.js",
 	}
 
