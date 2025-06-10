@@ -93,6 +93,10 @@ return {
 							".gitignore",
 						},
 					},
+					lsp_definitions = {
+						theme = "dropdown",
+						previewer = false,
+					},
 				},
 				extensions = {
 					["ui-select"] = {

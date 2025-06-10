@@ -1,13 +1,9 @@
 vim.diagnostic.config({
 	underline = true,
 	undercurl = true,
-	virtual_text = {
-		severity = nil,
-		source = "if_many",
-		format = nil,
-	},
 	signs = true,
-
+	virtual_text = true,
+	-- virtual_lines = true,
 	float = {
 		show_header = true,
 		border = "rounded",
