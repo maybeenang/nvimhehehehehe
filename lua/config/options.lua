@@ -9,6 +9,15 @@ opt.smartindent = true
 opt.autoindent = true
 opt.wrap = false
 
+-- Fold
+-- opt.foldmethod = "expr" -- Use indentation for folding
+-- opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+-- opt.foldcolumn = "1"
+-- opt.foldtext = ""
+-- opt.foldlevel = 99
+-- opt.foldlevelstart = 1
+-- opt.foldnestmax = 4
+
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
