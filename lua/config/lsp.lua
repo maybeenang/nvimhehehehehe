@@ -61,6 +61,30 @@ require("mason").setup({
 	},
 })
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require("lspconfig").emmet_language_server.setup({
+	filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade" },
+	capabilities = capabilities,
+	init_options = {
+		---@type table<string, string>
+		includeLanguages = {
+			blade = "html",
+		},
+		html = {
+			options = {
+				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+				["bem.enabled"] = true,
+			},
+		},
+	},
+})
+
+require("lspconfig").html.setup({
+	filetypes = { "html", "blade" },
+})
+
 require("mason-lspconfig").setup({
 	automatic_installation = true,
 	handlers = {
@@ -76,19 +100,19 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
-		emmet_language_server = function()
-			require("lspconfig").emmet_language_server.setup({
-				-- cmd = { "emmet-language-server", "--stdio" },
-				-- ILANGIN INI NANTI
-				filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade" },
-				init_options = {
-					---@type table<string, string>
-					includeLanguages = {
-						blade = "html",
-					},
-				},
-			})
-		end,
+		-- emmet_language_server = function()
+		-- 	require("lspconfig").emmet_language_server.setup({
+		-- 		-- cmd = { "emmet-language-server", "--stdio" },
+		-- 		-- ILANGIN INI NANTI
+		-- 		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade" },
+		-- 		init_options = {
+		-- 			---@type table<string, string>
+		-- 			includeLanguages = {
+		-- 				blade = "html",
+		-- 			},
+		-- 		},
+		-- 	})
+		-- end,
 		html = function()
 			require("lspconfig").html.setup({
 				filetypes = { "html", "blade" },
