@@ -74,7 +74,7 @@ require("lspconfig").emmet_language_server.setup({
 		},
 		html = {
 			options = {
-				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+				-- For possible options, see: https://github.com/emetio/emmet/blob/master/src/config.ts#L79-L267
 				["bem.enabled"] = true,
 			},
 		},
@@ -118,6 +118,13 @@ require("mason-lspconfig").setup({
 				filetypes = { "html", "blade" },
 			})
 		end,
+		docker_compose_language_service = function()
+			require("lspconfig").docker_compose_language_service.setup({
+				filetypes = { "yaml" },
+				root_dir = util.root_pattern("docker-compose.yml", "docker-compose.yaml", "docker-compose-**.yml"),
+			})
+		end,
+
 		pyright = function()
 			require("lspconfig").pyright.setup({
 				settings = {

@@ -81,6 +81,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.filetype.add({
 	pattern = {
 		[".*%.blade%.php"] = "blade",
+		["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
 	},
 })
 
