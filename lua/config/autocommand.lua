@@ -82,6 +82,7 @@ vim.filetype.add({
 	pattern = {
 		[".*%.blade%.php"] = "blade",
 		["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
+		[".*%.Jenkinsfile"] = "groovy",
 	},
 })
 
