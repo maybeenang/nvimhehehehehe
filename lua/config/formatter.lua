@@ -46,6 +46,11 @@ conform.setup({
 		-- php = { "pint" }
 		python = { "black", "isort" },
 		blade = { "prettierd" },
+		go = {
+			"gofumpt",
+			"goimports_reviser",
+			"golines",
+		},
 	},
 	-- format_on_save = {
 	-- 	bufnr = 0,

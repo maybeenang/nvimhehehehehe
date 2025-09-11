@@ -146,6 +146,25 @@ require("mason-lspconfig").setup({
 				single_file_support = true,
 			})
 		end,
+
+		gopls = function()
+			require("lspconfig").gopls.setup({
+				filetypes = { "go", "gomod", "gowork", "gotmpl" },
+				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+							shadow = true,
+						},
+						staticcheck = true,
+						completeUnimported = true,
+						usePlaceholders = true,
+					},
+				},
+			})
+		end,
 	},
 	ensure_installed = {
 		"lua_ls",

@@ -22,7 +22,7 @@ local js_ft = function()
 
 	for _, file in ipairs(biome_files) do
 		if vim.fn.glob(file) ~= "" then
-			table.insert(linter, "biome")
+			table.insert(linter, "biomejs")
 		end
 	end
 
