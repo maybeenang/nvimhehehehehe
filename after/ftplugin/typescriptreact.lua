@@ -4,5 +4,5 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
-
+-- max width 80 characters
 vim.opt.textwidth = 120

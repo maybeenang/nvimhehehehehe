@@ -44,6 +44,29 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha",
+				integrations = {
+					telescope = true,
+					nvimtree = true,
+					notify = true,
+					which_key = true,
+					gitsigns = true,
+					mason = true,
+					hop = true,
+					native_lsp = {
+						enabled = true,
+						underlines = {
+							errors = { "undercurl" },
+							warnings = { "undercurl" },
+							hints = { "undercurl" },
+							information = { "undercurl" },
+						},
+					},
+				},
+			})
+		end,
 	},
 	{
 		"loctvl842/monokai-pro.nvim",

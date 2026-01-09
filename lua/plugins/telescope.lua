@@ -46,6 +46,8 @@ return {
 
 			return {
 				{ "<C-p>", builtin.find_files, desc = "Find File" },
+				-- macos
+				{ "<M-p>", builtin.find_files, desc = "Find File" },
 				-- { "<C-p>", find_directory_and_focus, desc = "Find File" },
 				{ "<C-f>", builtin.live_grep, desc = "Find File" },
 			}

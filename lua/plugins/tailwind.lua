@@ -15,7 +15,22 @@ return {
 		"nvim-telescope/telescope.nvim", -- optional
 		"neovim/nvim-lspconfig", -- optional
 	},
-	opts = {}, -- your configuration
+	opts = {
+		server = {
+			override = true,
+			settings = {
+				tailwindCSS = {
+					classFunctions = { "cva", "cx" },
+					experimental = {
+						classRegex = {
+							"cva\\((\"[^\"]*\"|'[^']*')", -- cva("...")
+							"cx\\((\"[^\"]*\"|'[^']*')", -- cx("...")
+						},
+					},
+				},
+			},
+		},
+	}, -- your configuration
 	-- config = function()
 	--   require("tailwind-tools").setup()
 	-- end,
