@@ -1,15 +1,13 @@
 return {
-	-- COREE
+	-- LSP Configuration
 	{
-		"VonHeikemen/lsp-zero.nvim",
+		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
-		branch = "v4.x",
 		lazy = true,
 		config = function()
 			require("config.lsp")
@@ -26,27 +24,12 @@ return {
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
-			"tailwind-tools",
 			"onsails/lspkind.nvim",
 		},
 		config = function()
 			require("config.completion")
 		end,
 	},
-	-- {
-	-- 	"Jezda1337/nvim-html-css",
-	-- 	name = "html-css",
-	-- 	dependencies = {
-	-- 		"nvim-treesitter/nvim-treesitter",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	lazy = true,
-	-- 	after = "nvim-cmp",
-	-- 	event = { "BufRead", "BufNewFile" },
-	-- 	config = function()
-	-- 		require("html-css"):setup({})
-	-- 	end,
-	-- },
 	{
 		"windwp/nvim-ts-autotag",
 		event = { "BufReadPre", "BufNewFile" },
@@ -66,7 +49,6 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		-- dependencies = { "hrsh7th/nvim-cmp" },
 		config = function()
 			require("nvim-autopairs").setup({})
 			-- If you want to automatically add `(` after selecting a function or method
@@ -77,7 +59,7 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		opts = {},
 		cmd = "Trouble",
 		event = "LspAttach",
 		keys = {

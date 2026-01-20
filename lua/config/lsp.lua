@@ -1,6 +1,6 @@
-local lsp_zero = require("lsp-zero")
-local util = require("lspconfig.util")
 local builtin_tele = require("telescope.builtin")
+
+-- LSP attach callback
 local lsp_attach = function(client, bufnr)
 	local nset = function(key, result, desc)
 		vim.keymap.set("n", key, result, { buffer = bufnr, desc = "lsp: " .. desc })
@@ -15,14 +15,11 @@ local lsp_attach = function(client, bufnr)
 	nset("<leader>gi", builtin_tele.lsp_implementations, "Goto implementation")
 	nset("<leader>gr", builtin_tele.lsp_references, "Goto references")
 	nset("<leader>go", builtin_tele.lsp_type_definitions, "Goto type definition")
-	-- nset("gd", vim.lsp.buf.definition, "Goto definition")
 	nset("gd", builtin_tele.lsp_definitions, "Goto definition")
 	nset("<leader>gD", vim.lsp.buf.declaration, "Goto declaration")
 	nset("<leader>gs", vim.lsp.buf.signature_help, "Signature help")
 	iset("<C-h>", vim.lsp.buf.signature_help, "Signature help")
-	nset("<F2>", vim.lsp.buf.rename, "Rename") -- replaced by conform
-	-- vim.keymap.set({ 'n', 'x', 'v', 'i' }, '<F3>', vim.lsp.buf.format,
-	-- { buffer = bufnr, desc = "Format" })
+	nset("<F2>", vim.lsp.buf.rename, "Rename")
 	nset("<leader>gr", require("telescope.builtin").lsp_references, "Open references")
 	nset("<leader>ca", vim.lsp.buf.code_action, "Code action")
 	nset("<leader>ch", function()
@@ -33,22 +30,34 @@ local lsp_attach = function(client, bufnr)
 	require("config.signature").setup(client, bufnr)
 end
 
-local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-lsp_zero.extend_lspconfig({
-	sign_text = {
-		error = "✘",
-		warn = "▲",
-		hint = "⚑",
-		info = "»",
-	},
-	lsp_attach = lsp_attach,
-	capabilities = lsp_capabilities,
+-- Set up LspAttach autocommand for keymaps
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			lsp_attach(client, args.buf)
+		end
+	end,
 })
 
-local default_setup = function(server)
-	require("lspconfig")[server].setup({})
-end
+-- Configure diagnostic signs
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "✘",
+			[vim.diagnostic.severity.WARN] = "▲",
+			[vim.diagnostic.severity.HINT] = "⚑",
+			[vim.diagnostic.severity.INFO] = "»",
+		},
+	},
+})
+
+-- Add cmp_nvim_lsp capabilities to all LSP servers
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+vim.lsp.config("*", {
+	capabilities = lsp_capabilities,
+})
 
 -- mason setup
 require("mason").setup({
@@ -61,145 +70,13 @@ require("mason").setup({
 	},
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-require("lspconfig").emmet_language_server.setup({
-	filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade" },
-	capabilities = capabilities,
-	init_options = {
-		---@type table<string, string>
-		includeLanguages = {
-			blade = "html",
-		},
-		html = {
-			options = {
-				-- For possible options, see: https://github.com/emetio/emmet/blob/master/src/config.ts#L79-L267
-				["bem.enabled"] = true,
-			},
-		},
-	},
-})
-
-require("lspconfig").html.setup({
-	filetypes = { "html", "blade" },
-})
-
--- require("lspconfig").dartls.setup({
---   cmd = { "dart", "language-server", "--protocol=lsp" },
---   filetypes = { "dart" },
---   root_dir = util.root_pattern("pubspec.yaml"),
---   init_options = {
---     onlyAnalyzeProjectsWithOpenFiles = false,
---     suggestFromUnimportedLibraries = true,
---     closingLabels = true,
---     outline = true,
---     flutterOutline = true,
---   },
---   settings = {
---     dart = {
---       completeFunctionCalls = false,
---       showTodos = true,
---       analysisExcludedFolders = {
---         vim.fn.expand("$HOME/.pub-cache"),
---         -- flutter dor
---         vim.fn.expand("$HOME/flutter"),
---         ".dart_tool",
---         "build",
---         "android",
---         "ios",
---       },
---     },
---   },
--- })
-
 require("mason-lspconfig").setup({
 	automatic_installation = true,
-	handlers = {
-		default_setup,
-		lua_ls = function()
-			require("lspconfig").lua_ls.setup({
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim", "use" },
-						},
-					},
-				},
-			})
-		end,
-		-- emmet_language_server = function()
-		-- 	require("lspconfig").emmet_language_server.setup({
-		-- 		-- cmd = { "emmet-language-server", "--stdio" },
-		-- 		-- ILANGIN INI NANTI
-		-- 		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "blade" },
-		-- 		init_options = {
-		-- 			---@type table<string, string>
-		-- 			includeLanguages = {
-		-- 				blade = "html",
-		-- 			},
-		-- 		},
-		-- 	})
-		-- end,
-		html = function()
-			require("lspconfig").html.setup({
-				filetypes = { "html", "blade" },
-			})
-		end,
-		docker_compose_language_service = function()
-			require("lspconfig").docker_compose_language_service.setup({
-				filetypes = { "yaml" },
-				root_dir = util.root_pattern("docker-compose.yml", "docker-compose.yaml", "docker-compose-**.yml"),
-			})
-		end,
-
-		pyright = function()
-			require("lspconfig").pyright.setup({
-				settings = {
-					python = {
-						analysis = {
-							typeCheckingMode = "off",
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							diagnosticMode = "workspace",
-						},
-					},
-				},
-			})
-		end,
-
-		ts_ls = function()
-			require("lspconfig").ts_ls.setup({
-				root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
-				single_file_support = true,
-			})
-		end,
-
-		gopls = function()
-			require("lspconfig").gopls.setup({
-				filetypes = { "go", "gomod", "gowork", "gotmpl" },
-				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-
-				settings = {
-					gopls = {
-						analyses = {
-							unusedparams = true,
-							shadow = true,
-						},
-						staticcheck = true,
-						completeUnimported = true,
-						usePlaceholders = true,
-					},
-				},
-			})
-		end,
-	},
 	ensure_installed = {
 		"lua_ls",
 		"ts_ls",
 		"html",
 		"emmet_language_server",
-		"ts_ls",
 		"tailwindcss",
 		"jsonls",
 		"intelephense",
@@ -212,4 +89,18 @@ require("mason-tool-installer").setup({
 		"eslint_d",
 		"stylua",
 	},
+})
+
+-- Enable all configured LSP servers
+vim.lsp.enable({
+	"lua_ls",
+	"ts_ls",
+	"html",
+	"emmet_language_server",
+	"tailwindcss",
+	"jsonls",
+	"intelephense",
+	"gopls",
+	"pyright",
+	"docker_compose_language_service",
 })
