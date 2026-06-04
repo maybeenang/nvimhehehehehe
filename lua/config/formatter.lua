@@ -1,41 +1,28 @@
 local conform = require("conform")
-local js_ft = function()
-	local eslint_files = {
-		".prettierrc",
-		".prettierrc.js",
-		"prettier.config.js",
-	}
 
-	local biome_files = {
-		"biome.json",
-		"biome.jsonc",
-	}
-
-	local formatter = {}
-
-	for _, file in ipairs(eslint_files) do
-		if vim.fn.glob(file) ~= "" then
-			table.insert(formatter, "prettierd")
-		end
+local js_ft = function(bufnr)
+	if vim.fs.root(bufnr, { "biome.json", "biome.jsonc" }) then
+		return { "biome" }
 	end
 
-	for _, file in ipairs(biome_files) do
-		if vim.fn.glob(file) ~= "" then
-			table.insert(formatter, "biome")
-		end
+	if
+		vim.fs.root(
+			bufnr,
+			{ ".prettierrc", ".prettierrc.js", ".prettierrc.cjs", "prettier.config.js", "prettier.config.cjs" }
+		)
+	then
+		return { "prettierd" }
 	end
 
-	vim.inspect(formatter)
-
-	return formatter or { "prettierd" }
+	return { "prettierd" }
 end
 
 conform.setup({
 	formatters_by_ft = {
-		javascript = js_ft(),
-		typescript = js_ft(),
-		typescriptreact = js_ft(),
-		javascriptreact = js_ft(),
+		javascript = js_ft,
+		typescript = js_ft,
+		typescriptreact = js_ft,
+		javascriptreact = js_ft,
 		html = { "prettierd" },
 		css = { "prettierd" },
 		scss = { "prettierd" },
@@ -78,7 +65,6 @@ vim.keymap.set({ "n", "x", "v", "i" }, "<F3>", function()
 end, { desc = "Format" })
 
 vim.api.nvim_create_user_command("Format", function(args)
-	print("hello world")
 	local range = nil
 	if args.count ~= -1 then
 		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]

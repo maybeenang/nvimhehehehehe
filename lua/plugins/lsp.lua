@@ -58,6 +58,32 @@ return {
 		end,
 	},
 	{
+		"ray-x/lsp_signature.nvim",
+		event = "InsertEnter",
+		opts = {
+			bind = true,
+			floating_window = true,
+			floating_window_above_cur_line = true,
+			hint_enable = true,
+			hint_prefix = {
+				above = "↙ ",
+				current = "← ",
+				below = "↖ ",
+			},
+			hint_scheme = "Comment",
+			hi_parameter = "LspSignatureActiveParameter",
+			max_height = 7,
+			max_width = 80,
+			close_timeout = 4000,
+			handler_opts = {
+				border = "rounded",
+			},
+			toggle_key = "<C-k>",
+			toggle_key_flip_floatwin_setting = true,
+			select_signature_key = "<M-n>",
+		},
+	},
+	{
 		"folke/trouble.nvim",
 		opts = {},
 		cmd = "Trouble",

@@ -7,6 +7,14 @@ return {
 			diagnostics = {
 				globals = { "vim", "use" },
 			},
+			hint = {
+				enable = true,
+				setType = true,
+				paramType = true,
+				paramName = "All", -- "All" | "Literal" | "Disable"
+				semicolon = "SameLine", -- "All" | "SameLine" | "Disable"
+				arrayIndex = "Enable", -- "Enable" | "Auto" | "Disable"
+			},
 		},
 	},
 }

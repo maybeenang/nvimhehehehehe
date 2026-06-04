@@ -6,10 +6,6 @@ local lsp_attach = function(client, bufnr)
 		vim.keymap.set("n", key, result, { buffer = bufnr, desc = "lsp: " .. desc })
 	end
 
-	local iset = function(key, result, desc)
-		vim.keymap.set("i", key, result, { buffer = bufnr, desc = "lsp: " .. desc })
-	end
-
 	nset("K", vim.lsp.buf.hover, "hover")
 	nset("<leader>gd", builtin_tele.lsp_definitions, "Goto definition")
 	nset("<leader>gi", builtin_tele.lsp_implementations, "Goto implementation")
@@ -17,17 +13,16 @@ local lsp_attach = function(client, bufnr)
 	nset("<leader>go", builtin_tele.lsp_type_definitions, "Goto type definition")
 	nset("gd", builtin_tele.lsp_definitions, "Goto definition")
 	nset("<leader>gD", vim.lsp.buf.declaration, "Goto declaration")
-	nset("<leader>gs", vim.lsp.buf.signature_help, "Signature help")
-	iset("<C-h>", vim.lsp.buf.signature_help, "Signature help")
 	nset("<F2>", vim.lsp.buf.rename, "Rename")
 	nset("<leader>gr", require("telescope.builtin").lsp_references, "Open references")
 	nset("<leader>ca", vim.lsp.buf.code_action, "Code action")
+	nset("<leader>gs", function()
+		require("lsp_signature").toggle_float_win()
+	end, "Signature help toggle")
 	nset("<leader>ch", function()
 		local enabled = vim.lsp.inlay_hint.is_enabled({})
 		vim.lsp.inlay_hint.enable(not enabled)
 	end, "inlay hint")
-
-	require("config.signature").setup(client, bufnr)
 end
 
 -- Set up LspAttach autocommand for keymaps
@@ -36,6 +31,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client then
 			lsp_attach(client, args.buf)
+
+			-- Auto-enable inlay hints if the server supports it
+			if client.supports_method("textDocument/inlayHint") then
+				vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+			end
 		end
 	end,
 })
