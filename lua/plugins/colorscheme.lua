@@ -65,6 +65,16 @@ return {
 						},
 					},
 				},
+				highlight_overrides = {
+					all = function(colors)
+						return {
+							DiagnosticUnderlineError = { sp = colors.red, undercurl = true },
+							DiagnosticUnderlineWarn = { sp = colors.yellow, undercurl = true },
+							DiagnosticUnderlineHint = { sp = colors.teal, undercurl = true },
+							DiagnosticUnderlineInfo = { sp = colors.sky, undercurl = true },
+						}
+					end,
+				},
 			})
 		end,
 	},

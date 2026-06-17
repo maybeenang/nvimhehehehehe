@@ -1,49 +1,30 @@
 local lint = require("lint")
 
-local js_ft = function()
-	local eslint_files = {
-		".eslintrc",
-		".eslintrc.js",
-		"eslint.config.js",
-	}
-
-	local biome_files = {
-		"biome.json",
-		"biome.jsonc",
-	}
-
-	local linter = {}
-
-	for _, file in ipairs(eslint_files) do
-		if vim.fn.glob(file) ~= "" then
-			table.insert(linter, "eslint_d")
-		end
-	end
-
-	for _, file in ipairs(biome_files) do
-		if vim.fn.glob(file) ~= "" then
-			table.insert(linter, "biomejs")
-		end
-	end
-
-	vim.inspect(linter)
-
-	-- default to eslint_d
-	return linter or { "eslint_d" }
-end
+local eslint_config_markers = {
+	"eslint.config.js",
+	"eslint.config.mjs",
+	"eslint.config.cjs",
+	".eslintrc.js",
+	".eslintrc.cjs",
+	".eslintrc.json",
+	".eslintrc.yaml",
+	".eslintrc.yml",
+	"package.json",
+}
 
 lint.linters_by_ft = {
-	javascript = js_ft(),
-	typescript = js_ft(),
-	typescriptreact = js_ft(),
-	javascriptreact = js_ft(),
+	javascript = { "eslint_d" },
+	typescript = { "eslint_d" },
+	typescriptreact = { "eslint_d" },
+	javascriptreact = { "eslint_d" },
+	go = { "golangcilint" },
 }
 
 local augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave", "TextChanged" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "BufReadPost", "BufWritePost", "InsertLeave" }, {
 	group = augroup,
 	callback = function()
-		lint.try_lint()
+		local cwd = vim.fs.root(0, eslint_config_markers) or vim.fn.getcwd()
+		lint.try_lint(nil, { cwd = cwd })
 	end,
 })

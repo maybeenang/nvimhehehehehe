@@ -34,9 +34,16 @@ conform.setup({
 		python = { "black", "isort" },
 		blade = { "prettierd" },
 		go = {
-			"gofumpt",
-			"goimports_reviser",
+			"gofmt",
+			"goimports-reviser",
 			"golines",
+		},
+	},
+	formatters = {
+		["goimports-reviser"] = {
+			command = "goimports-reviser",
+			args = { "-rm-unused", "-set-alias", "-format", "$FILENAME" },
+			stdin = false,
 		},
 	},
 	-- format_on_save = {

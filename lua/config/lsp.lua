@@ -14,7 +14,6 @@ local lsp_attach = function(client, bufnr)
 	nset("gd", builtin_tele.lsp_definitions, "Goto definition")
 	nset("<leader>gD", vim.lsp.buf.declaration, "Goto declaration")
 	nset("<F2>", vim.lsp.buf.rename, "Rename")
-	nset("<leader>gr", require("telescope.builtin").lsp_references, "Open references")
 	nset("<leader>ca", vim.lsp.buf.code_action, "Code action")
 	nset("<leader>gs", function()
 		require("lsp_signature").toggle_float_win()
@@ -33,7 +32,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			lsp_attach(client, args.buf)
 
 			-- Auto-enable inlay hints if the server supports it
-			if client.supports_method("textDocument/inlayHint") then
+			if client:supports_method("textDocument/inlayHint") then
 				vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
 			end
 		end
